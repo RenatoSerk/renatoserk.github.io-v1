@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Observer } from 'gsap/Observer';
 import Lenis from 'lenis';
-import { useCursorStore } from './stores/useCursorStore';
+import { useCursorStore } from '../stores/useCursorStore';
 
 gsap.registerPlugin(ScrollTrigger, Observer);
 
@@ -75,7 +75,7 @@ const HTMLContent: React.FC = () => {
 
     Observer.create({
       type: "wheel,touch,pointer",
-      onDown: (e) => {
+      onDown: () => {
         if (isDraggingRef.current) return;
 
         const rect = landingRef.current?.getBoundingClientRect();
@@ -84,7 +84,7 @@ const HTMLContent: React.FC = () => {
           return false;
         }
       },
-      onUp: (e) => {
+      onUp: () => {
         if (isDraggingRef.current) return;
 
         const rect = scrollContainerRef.current?.getBoundingClientRect();

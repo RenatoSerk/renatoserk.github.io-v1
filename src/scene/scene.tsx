@@ -3,41 +3,39 @@ import * as THREE from 'three';
 import { useEarthRotation } from './hooks/useEarthRotation';
 import { useThree } from '@react-three/fiber';
 import { EarthModel, MarsModel } from './Models';
+import { useDebugCamera } from './hooks/useDebugCamera';
 
-const LandingScene: React.FC = () => {
+const Scene: React.FC = () => {
   const earthRef = useRef<THREE.Group>(null!);
   const marsRef = useRef<THREE.Group>(null!);
   const earthGlowRef = useRef<THREE.Mesh>(null!);
   const { camera } = useThree();
 
+  // Initialize debug camera controls
+  useDebugCamera(camera);
   useEarthRotation(earthRef, earthGlowRef);
 
   useEffect(() => {
-    camera.position.set(-3, 2, 5);
-    camera.rotation.set(0, 0, 0);
-    camera.lookAt(-3, 2, 5);
-  }, []);
+    camera.position.set(-4, 0, 10.5);
+  }, [camera.position]);
 
   return (
     <>
       <directionalLight position={[3, 2, 10]} intensity={1.5} />
 
-      // Earth
-      <group ref={earthRef} position={[4, 2, -6]} scale={5}>
+      <group ref={earthRef} scale={5}>
         <EarthModel />
       </group>
-      <mesh ref={earthGlowRef} position={[4, 2, -6]} scale={5.5} visible={false}>
+      <mesh ref={earthGlowRef} scale={5.5} visible={false}>
         <sphereGeometry args={[1, 32, 32]} />
         <meshBasicMaterial color="white" transparent opacity={0.15}/>
       </mesh>
 
-      // Mars
-      <group ref={marsRef} position={[4, -10, -6]} scale={40}>
+      <group ref={marsRef} position={[0, -40, 0]} scale={40}>
         <MarsModel />
       </group>
-      
     </>
   );
 };
 
-export default LandingScene;
+export default Scene;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useCursorStore } from "./stores/useCursorStore";
+import { useCursorStore } from "../stores/useCursorStore";
 
 const HOVERING_CURSOR_SIZE = 25;
 const DEFAULT_CURSOR_SIZE = 15;

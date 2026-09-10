@@ -1,9 +1,16 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
+import './styles/index.css';
+import CustomCursor from './common/CustomCursor';
+import HTMLContent from './common/HTMLContent';
+import DebugIndicator from './components/DebugIndicator';
+import CanvasLoader from './common/CanvasLoader';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <CustomCursor />
+    <HTMLContent />
+    <CanvasLoader />
+    <DebugIndicator />
   </StrictMode>
 );
